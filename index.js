@@ -1,8 +1,21 @@
 const express = require('express');
 const routes = require('./routes/api');
+const bodyParser = require('body-parser');
 
 // setup express app
 const app = express();
+
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://user1:password1@ds253918.mlab.com:53918/net-ninja-rest';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+app.use(bodyParser.json())
+
+
 // Initialize Routes
 // Putting api as the first parameter puts /api in front of the route
 app.use('/api', routes);
