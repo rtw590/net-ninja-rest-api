@@ -20,6 +20,12 @@ app.use(bodyParser.json())
 // Putting api as the first parameter puts /api in front of the route
 app.use('/api', routes);
 
+// Error handling middleware
+app.use(function(err, req, res, next){
+    // console.log(err);
+    res.status(422).send({error: err.message});
+})
+
 app.get('/', function(req, res){
     res.send('Hello');
 });
