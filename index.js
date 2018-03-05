@@ -13,7 +13,11 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.use(bodyParser.json())
+app.use(express.static('public'));
+
+
+
+app.use(bodyParser.json());
 
 
 // Initialize Routes
